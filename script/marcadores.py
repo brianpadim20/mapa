@@ -31,9 +31,9 @@ def geoJSONColombia():
     
     # Añadir la geometría de Colombia al mapa
     folium.GeoJson(colombia_geometry, fill_opacity=0.1).add_to(map)
-
     folium.Marker(location=[lat_center, lon_center], zoom_start=6.4, min_lat=lat_min, max_lat=lat_max, min_lon=lon_min, max_lon=lon_max).add_to(map)
     
+    # MACADORES
     #https://fontawesome.com/search?q=smile&o=r
     #Marcador usando font awesome, se debe usar el prefijo (prefix = "fa")
     folium.Marker(location=[ 6.231961 , -75.568268], icon=folium.Icon(icon="face-smile",prefix="fa", color="blue"), zoom_start=6.4).add_to(map)
@@ -48,9 +48,8 @@ def geoJSONColombia():
         tooltip="Hola mundo desde Medellín..."
     ).add_to(map)
     
-    # Guardamos el mapa como un archivo HTML
+    # Guardar el mapa como un archivo HTML
     map.save("ColombiaJSONMarker.html")
 
 if __name__ == '__main__':
-    # DisplayGeoJSONLayer()
     geoJSONColombia()
