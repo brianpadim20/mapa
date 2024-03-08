@@ -32,17 +32,25 @@ def geoJSONColombia():
     
     # Añadir la geometría de Colombia al mapa
     folium.GeoJson(colombia_geometry, fill_opacity=0).add_to(map)
-    folium.Marker(location=[lat_center, lon_center], zoom_start=6.4, min_lat=lat_min, max_lat=lat_max, min_lon=lon_min, max_lon=lon_max).add_to(map)
     
     # COORDENADAS
     coords = pd.DataFrame({'lang':[-74.072090, -75.5174, -74.7813, -76.5320,  -75.6182, -75.5917],
                         'lat':[4.710989, 5.0687, 10.9685, 3.4516, 6.1498, 6.1709]})
     
     for i, j in coords.iterrows():
-        folium.Marker(location=[j['lat'], j['lang']]).add_to(map)
-        # folium.CircleMarker(
-        #     location=
-        # )
+        folium.Marker(location = [j['lat'], j['lang']]).add_to(map)
+    
+    #Cuando el marcador aparece solo como "circle" y no "circlemarker" se debe expresar el radio en kilómetros (se deben poner en miles)
+    for i, j in coords.iterrows():
+        folium.Circle(
+            location = [j['lat'], j['lang']],
+            radius = 20000,
+            fill = True,
+            color = "blue",
+            fill_color = "red",
+            fill_opacity = 0.25,
+            tooltip = "Prueba del tooltip para Power BI" #popup es la alternativa, a este tbn se le puede poner código html
+            ).add_to(map)
     
     # Guardar el mapa como un archivo HTML
     map.save("ColombiaJSONSeveralMarkers.html")
