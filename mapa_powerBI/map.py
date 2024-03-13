@@ -66,7 +66,7 @@ def map_data(lat_col, lon_col):
         folium.Marker(location=[lat, lon], tooltip=info).add_to(map)
     
     # Guardar el mapa como un archivo HTML
-    map.save("mapa_desde_sql.html")
+    map.save("index.html")
     
     # Retornar el mapa como un objeto HTML
     # return map._repr_html_()
